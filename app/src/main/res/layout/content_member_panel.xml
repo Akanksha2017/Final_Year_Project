@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_dark"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.android.final_year_project.MemberPanel">
+
+    <Button
+        style="@style/MemberPanelTheme"
+        android:background="@color/accent_theme_dark"
+        android:onClick="councilLogin"
+        android:text="@string/login_btn1" />
+
+    <Button
+        style="@style/MemberPanelTheme"
+        android:background="@color/accent_material_dark"
+        android:onClick="presidentLogin"
+        android:text="@string/login_btn2" />
+
+    <Button
+        style="@style/MemberPanelTheme"
+        android:background="@color/accent_theme_light"
+        android:onClick="memberLogin"
+        android:text="@string/login_btn3" />
+
+    <Button
+        style="@style/MemberPanelTheme"
+        android:background="@color/accent_theme_lighter"
+        android:onClick="noLogin"
+        android:text="@string/login_btn4" />
+</LinearLayout>
