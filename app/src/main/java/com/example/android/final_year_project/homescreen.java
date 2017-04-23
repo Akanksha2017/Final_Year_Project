@@ -31,13 +31,36 @@ public class homescreen extends AppCompatActivity {
 
         FM= getSupportFragmentManager();
         FT= FM.beginTransaction();
-        FT.replace(R.id.containerView, new TaskPoolFragment()).commit();
+        FT.replace(R.id.containerView, new ProfileFragment()).commit();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 drawerLayout.closeDrawers();
+                if (item.getItemId()== R.id.nav_budget) {
+                    FragmentTransaction fragmentTransaction= FM.beginTransaction();
+                    fragmentTransaction.replace(R.id.containerView, new BudgetFragment()).commit();
+                }
 
+                if (item.getItemId()==R.id.nav_profile)
+                {
+                    FragmentTransaction fragmentTransaction1=FM.beginTransaction();
+                    fragmentTransaction1.replace(R.id.containerView,new ProfileFragment()).commit();
+
+                }
+
+                if (item.getItemId()==R.id.nav_task)
+                {
+                    FragmentTransaction fragmentTransaction1=FM.beginTransaction();
+                    fragmentTransaction1.replace(R.id.containerView,new TaskPoolFragment()).commit();
+
+                }
+                if (item.getItemId()==R.id.nav_meeting)
+                {
+                    FragmentTransaction fragmentTransaction1=FM.beginTransaction();
+                    fragmentTransaction1.replace(R.id.containerView,new MeetingsFragment()).commit();
+
+                }
                 return false;
             }
         });

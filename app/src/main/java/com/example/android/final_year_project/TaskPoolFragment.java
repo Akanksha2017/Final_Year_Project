@@ -31,8 +31,8 @@ public class TaskPoolFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_task_pool,null);
-        tabLayout=(TabLayout)v.findViewById(R.id.tabs);
-        viewPager=(ViewPager)v.findViewById(R.id.viewpager);
+        tabLayout=(TabLayout)v.findViewById(R.id.tabs_task);
+        viewPager=(ViewPager)v.findViewById(R.id.viewpager_task);
         //set an adpater
 
          viewPager.setAdapter(new MyAdapter( getChildFragmentManager()));
