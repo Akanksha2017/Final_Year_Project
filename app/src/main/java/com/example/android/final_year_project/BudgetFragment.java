@@ -23,7 +23,9 @@ public class BudgetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getActivity().setTitle(R.string.Meet);
         return inflater.inflate(R.layout.fragment_budget, container, false);
+
     }
 
 }
