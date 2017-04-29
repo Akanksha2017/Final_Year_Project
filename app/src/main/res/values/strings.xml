@@ -45,6 +45,15 @@
     <string name="title_activity_meetings">meetings</string>
     <string name="title_activity_schedule_new">scheduleNew</string>
 
+    <!-- Strings related to Create Society-->
+    <string name="prompt_society_name">Name of the Society</string>
+    <string name="prompt_president_id">Id of the President</string>
+    <string name="prompt_vice_president_id">Id of the Vice President</string>
+    <string name="prompt_treasurer_id">Id of the Treasurer</string>
+    <string name="prompt_expenses">Budget allotted</string>
+    <string name="action_create_soc">Create Society</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
