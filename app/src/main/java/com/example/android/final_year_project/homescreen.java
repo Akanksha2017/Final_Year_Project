@@ -13,8 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import static com.example.android.final_year_project.R.id.toolbar;
-
 public class homescreen extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
@@ -102,13 +100,10 @@ public class homescreen extends AppCompatActivity {
             }
         });
 
-
-
         ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        toolbar.setTitle(R.string.app_name);
-
+        toolbar.setTitle(R.string.title_activity_home_screen);
 
     }
     @Override

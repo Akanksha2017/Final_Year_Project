@@ -1,15 +1,56 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="15dp"
+    android:orientation="vertical"
     tools:context="com.example.android.final_year_project.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:textColor="#FFFFFF"
-        android:textSize="35sp"/>
+        style="@style/ProfileTheme"
+        android:text="Name: " />
 
-</FrameLayout>
+    <TextView
+        style="@style/ProfileTheme"
+        android:text="User ID: " />
+
+    <TextView
+        style="@style/ProfileTheme"
+        android:text="Year: " />
+
+    <TextView
+        style="@style/ProfileTheme"
+        android:text="Department: " />
+
+    <TextView
+        style="@style/ProfileTheme"
+        android:text="Email ID: " />
+
+    <TextView
+        style="@style/ProfileTheme"
+        android:text="Position: " />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/accent_material_dark"
+            android:cursorVisible="true"
+            android:text="View Log"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/accent_material_dark"
+            android:cursorVisible="true"
+            android:text=" My Achievements "
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>
