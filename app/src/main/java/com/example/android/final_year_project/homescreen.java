@@ -1,6 +1,5 @@
 package com.example.android.final_year_project;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,8 +10,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class homescreen extends AppCompatActivity {
 
@@ -21,6 +20,7 @@ public class homescreen extends AppCompatActivity {
     FragmentManager FM;
     FragmentTransaction FT;
     boolean flag = false;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,18 +112,25 @@ public class homescreen extends AppCompatActivity {
     @Override
     public void onRestart() {
         super.onRestart();
-       getSupportActionBar().setTitle(R.string.title_activity_home_screen);
+        getSupportActionBar().setTitle(R.string.title_activity_home_screen);
     }
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+        if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
             getSupportFragmentManager().popBackStack();
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1)
+                getSupportActionBar().setTitle(R.string.title_activity_home_screen);
         }
         else{
-            getSupportActionBar().setTitle(R.string.title_activity_home_screen);
-            super.onBackPressed();
+            //super.onBackPressed();
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press again to exit the application", Toast.LENGTH_SHORT).show();
         }
-        //super.onBackPressed();
+
     }
 }
