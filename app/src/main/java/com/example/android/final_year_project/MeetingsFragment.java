@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +20,15 @@ public class MeetingsFragment extends Fragment {
     public  static ViewPager viewPager;
     public  static int int_items= 3;
 
-
-
     public MeetingsFragment() {
         // Required empty public constructor
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.Meet);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class MeetingsFragment extends Fragment {
             }
         });
         getActivity().setTitle(R.string.Meet);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.Meet);
         return v;
     }
 

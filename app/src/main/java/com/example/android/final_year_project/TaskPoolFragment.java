@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +20,15 @@ public class TaskPoolFragment extends Fragment {
     public  static ViewPager viewPager;
     public  static int int_items= 2;
 
-
-
     public TaskPoolFragment() {
         // Required empty public constructor
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.task);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class TaskPoolFragment extends Fragment {
                 tabLayout.setupWithViewPager(viewPager);
             }
         });
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.task);
         return v;
     }
 

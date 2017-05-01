@@ -3,9 +3,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import static com.example.android.final_year_project.MeetingsFragment.int_items;
-/**
- * Created by Admin on 3/1/2017.
- */
 
 public class MyAdapterMeetings  extends FragmentPagerAdapter {
 

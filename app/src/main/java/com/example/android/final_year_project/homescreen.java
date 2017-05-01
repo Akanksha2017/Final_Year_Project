@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 public class homescreen extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class homescreen extends AppCompatActivity {
         final android.support.v7.widget.Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         //final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        toolbar.setTitle(R.string.title_activity_home_screen);
 
         FM= getSupportFragmentManager();
 //        FT= FM.beginTransaction();
@@ -92,8 +93,7 @@ public class homescreen extends AppCompatActivity {
                     flag = true;
                     FT= FM.beginTransaction();
                     FT.replace(R.id.containerView, fragment);
-                    toolbar.setTitle(title);
-                    //FT.addToBackStack(null);
+                    FT.addToBackStack(null);
                     FT.commit();
                 }
                 return false;
@@ -103,18 +103,27 @@ public class homescreen extends AppCompatActivity {
         ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        toolbar.setTitle(R.string.title_activity_home_screen);
-
     }
     @Override
-    public void onBackPressed() {
-        if (flag) {
-            while (getFragmentManager().getBackStackEntryCount() > 0) {
-                getFragmentManager().popBackStack();}
-            Intent home=new Intent(this,homescreen.class);
-            startActivity(home);
-            flag = false;
+    public void onResume() {
+        super.onResume();
+        getSupportActionBar().setTitle(R.string.title_activity_home_screen);
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+       getSupportActionBar().setTitle(R.string.title_activity_home_screen);
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            getSupportFragmentManager().popBackStack();
         }
+        else{
+            getSupportActionBar().setTitle(R.string.title_activity_home_screen);
+            super.onBackPressed();
+        }
+        //super.onBackPressed();
     }
 }
