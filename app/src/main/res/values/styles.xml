@@ -1,7 +1,6 @@
 <resources>
 
     <!-- Base application theme. -->
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/background_material_dark</item>
@@ -9,11 +8,14 @@
         <item name="colorAccent">@color/accent_material_dark</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
     <style name="EcadroidOrange" parent="Theme.AppCompat.NoActionBar">
         <item name="android:colorBackground">@color/background_material_dark</item>
         <item name="android:colorForeground">@color/foreground_material_dark</item>
     </style>
-
 
     <!--Login application theme.-->
     <style name="LoginTheme">
@@ -41,11 +43,6 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <!--Task Pool theme-->
     <style name="Tabtheme">
         <item name="android:layout_width">match_parent</item>
@@ -56,6 +53,7 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <!--Profile Theme-->
     <style name="ProfileTheme">
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_width">match_parent</item>
