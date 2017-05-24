@@ -1,12 +1,11 @@
 package com.example.android.final_year_project;
 
+
 import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,120 +15,106 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "LoginActivity";
-    private static final int REQUEST_SIGNUP = 0;
-    TextView t;
+public class SignUpActivity extends AppCompatActivity {
 
+    private static final String TAG = "SignupActivity";
+    TextView t;
+    @InjectView(R.id.input_name)
+    EditText _nameText;
     @InjectView(R.id.input_email)
     EditText _emailText;
     @InjectView(R.id.input_password)
     EditText _passwordText;
-    @InjectView(R.id.btn_login)
-    Button _loginButton;
-    @InjectView(R.id.link_signup)
-    TextView _signupLink;
+    @InjectView(R.id.btn_signup)
+    Button _signupButton;
+    @InjectView(R.id.link_login)
+    TextView _loginLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.inject(this);
+        setContentView(R.layout.activity_sign_up);
         t = (TextView) findViewById(R.id.tv1);
         Typeface myCustomFont = Typeface.createFromAsset(getAssets(), "fonts/cac_champagne.ttf");
         t.setTypeface(myCustomFont);
+        ButterKnife.inject(this);
 
-        _loginButton.setOnClickListener(new View.OnClickListener() {
-
+        _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                signup();
             }
         });
 
-        _signupLink.setOnClickListener(new View.OnClickListener() {
-
+        _loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
+                // Finish the registration screen and return to the Login activity
+                finish();
             }
         });
     }
 
-    public void OpenHomeScreen(View view) {
-        Intent home = new Intent(this, homescreen.class);
-        startActivity(home);
-    }
-
-    public void login() {
-        Log.d(TAG, "Login");
+    public void signup() {
+        Log.d(TAG, "Signup");
 
         if (!validate()) {
-            onLoginFailed();
+            onSignupFailed();
             return;
         }
 
-        _loginButton.setEnabled(false);
+        _signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this,
                 R.style.EcadroidOrange);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
+        String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
+        // TODO: Implement your own signup logic here.
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
+                        // On complete call either onSignupSuccess or onSignupFailed
+                        // depending on success
+                        onSignupSuccess();
+                        // onSignupFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                this.finish();
-            }
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        // disable going back to the MainActivity
-        moveTaskToBack(true);
-    }
-
-    public void onLoginSuccess() {
-        _loginButton.setEnabled(true);
+    public void onSignupSuccess() {
+        _signupButton.setEnabled(true);
+        setResult(RESULT_OK, null);
         finish();
     }
 
-    public void onLoginFailed() {
+    public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
-        _loginButton.setEnabled(true);
+        _signupButton.setEnabled(true);
     }
 
     public boolean validate() {
         boolean valid = true;
 
+        String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+
+        if (name.isEmpty() || name.length() < 3) {
+            _nameText.setError("at least 3 characters");
+            valid = false;
+        } else {
+            _nameText.setError(null);
+        }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("enter a valid email address");
@@ -148,4 +133,3 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 }
-
