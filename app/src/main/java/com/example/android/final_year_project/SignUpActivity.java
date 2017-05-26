@@ -13,9 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -27,6 +24,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import prefs.UserInfo;
 import prefs.UserSession;
 
@@ -36,10 +35,6 @@ import static java.lang.Integer.parseInt;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
-    private UserSession session;
-    private UserInfo userInfo;
-    private ProgressDialog progressDialog;
-
     TextView t;
     @InjectView(R.id.input_name)
     EditText _nameText;
@@ -55,6 +50,9 @@ public class SignUpActivity extends AppCompatActivity {
     Button _signupButton;
     @InjectView(R.id.link_login)
     TextView _loginLink;
+    private UserSession session;
+    private UserInfo userInfo;
+    private ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -134,6 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
                         toast(jObj.getString("message"));
                         session.setLoggedin(true);
                         onSignupSuccess();
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");

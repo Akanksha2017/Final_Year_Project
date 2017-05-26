@@ -1,34 +1,30 @@
 package com.example.android.final_year_project;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import prefs.UserInfo;
 import prefs.UserSession;
 
@@ -37,12 +33,7 @@ import static com.example.android.final_year_project.MemberPanel.CATEGORY;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 1;
-    private UserSession session;
-    private UserInfo userInfo;
-    private ProgressDialog progressDialog;
     TextView t;
-
-
     @InjectView(R.id.input_email)
     EditText _emailText;
     @InjectView(R.id.input_password)
@@ -51,7 +42,9 @@ public class LoginActivity extends AppCompatActivity {
     Button _loginButton;
     @InjectView(R.id.link_signup)
     TextView _signupLink;
-
+    private UserSession session;
+    private UserInfo userInfo;
+    private ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         final String category = newstring;
         session         = new UserSession(this);
         userInfo        = new UserInfo(this);
-        progressDialog  = new ProgressDialog(this, R.style.EcadroidOrange);
+        progressDialog = new ProgressDialog(this);
 
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
@@ -79,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
         t.setTypeface(myCustomFont);
 
         if(session.isUserLoggedin()){
-            startActivity(new Intent(this, homescreen.class));
-            finish();
+            //     startActivity(new Intent(this, homescreen.class));
+            //    finish();
         }
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +189,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
+
                         // onLoginFailed();
                         //if (progressDialog.isShowing()) progressDialog.dismiss();
                     }
@@ -227,13 +220,21 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        startActivity(new Intent(LoginActivity.this, homescreen.class));
-        finish();
+        if (validate()) {
+            Toast.makeText(this, "Login successful!", Toast.LENGTH_LONG);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+            startActivity(new Intent(LoginActivity.this, homescreen.class));
+            finish();
+        }
+
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_SHORT).show();
         _loginButton.setEnabled(true);
     }
 
@@ -256,7 +257,6 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             _passwordText.setError(null);
         }
-
         return valid;
     }
 

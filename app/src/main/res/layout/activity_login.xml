@@ -78,11 +78,5 @@
             android:text="No account yet? Create one"
             android:textSize="16dip" />
 
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="OpenHomeScreen"
-            android:text="next screen" />
     </LinearLayout>
 </ScrollView>

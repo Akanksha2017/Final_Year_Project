@@ -17,6 +17,12 @@
         <item name="android:colorForeground">@color/foreground_material_dark</item>
     </style>
 
+    <style name="Ecadroid" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorBackground">@color/background_material_dark</item>
+        <item name="android:colorForeground">@color/foreground_material_dark</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <!--Login application theme.-->
     <style name="LoginTheme">
         <item name="android:layout_width">match_parent</item>
