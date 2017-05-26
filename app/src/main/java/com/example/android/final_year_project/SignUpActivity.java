@@ -71,6 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
             newstring= (String) savedInstanceState.getSerializable(CATEGORY);
         }
         final String category = newstring;
+        session         = new UserSession(this);
         setContentView(R.layout.activity_sign_up);
         t = (TextView) findViewById(R.id.tv1);
         Typeface myCustomFont = Typeface.createFromAsset(getAssets(), "fonts/cac_champagne.ttf");
@@ -129,26 +130,23 @@ public class SignUpActivity extends AppCompatActivity {
 
                     // Check for error node in json
                     if (!error) {
-                        //JSONObject user = jObj.getJSONObject("user");
-
-                        // Inserting row in users table
-                        userInfo.setEmail(email);
-                        userInfo.setName(name);
-                        userInfo.setCategory(category);
-                        userInfo.setDept(department);
-                        userInfo.setYear(year);
+                        if (progressDialog!=null && progressDialog.isShowing()) progressDialog.dismiss();
+                        toast(jObj.getString("message"));
                         session.setLoggedin(true);
-
                         onSignupSuccess();
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");
+                        if (progressDialog.isShowing()) progressDialog.dismiss();
                         toast(errorMsg);
+                        onSignupFailed();;
                     }
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
+                    //if (progressDialog.isShowing()) progressDialog.dismiss();
                     toast("Json error: " + e.getMessage());
+                    onSignupFailed();
                 }
 
             }
@@ -156,9 +154,10 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
-                toast("volley error" + error.getMessage());
-                progressDialog.hide();
+                Log.e(TAG, "Login Error: " + error.toString());
+                toast("volley error" + error.toString());
+                //if (progressDialog.isShowing()) progressDialog.dismiss();
+                onSignupFailed();
             }
         }) {
 
@@ -180,6 +179,17 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Adding request to request queue
         LoginController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // On complete call either onLoginSuccess or onLoginFailed
+                        if (progressDialog!=null && progressDialog.isShowing()) progressDialog.dismiss();
+                        onSignupSuccess();
+                        // onLoginFailed();
+
+                    }
+                }, 3000);
     }
 
     private void toast(String x) {
@@ -192,12 +202,11 @@ public class SignUpActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-        finish();
+        this.finish();
     }
 
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
         _signupButton.setEnabled(true);
     }
 
