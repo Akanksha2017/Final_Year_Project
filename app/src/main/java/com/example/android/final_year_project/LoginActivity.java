@@ -36,9 +36,10 @@ import static com.example.android.final_year_project.MemberPanel.CATEGORY;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
-    private static final int REQUEST_SIGNUP = 0;
+    private static final int REQUEST_SIGNUP = 1;
     private UserSession session;
     private UserInfo userInfo;
+    private ProgressDialog progressDialog;
     TextView t;
 
 
@@ -69,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         final String category = newstring;
         session         = new UserSession(this);
         userInfo        = new UserInfo(this);
+        progressDialog  = new ProgressDialog(this, R.style.EcadroidOrange);
 
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
@@ -101,21 +103,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void OpenHomeScreen(View view) {
-        Intent home = new Intent(this, homescreen.class);
-        startActivity(home);
-    }
-
     public void login(final String category) {
         Log.d(TAG, "Login");
         String tag_string_req = "req_login";
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.EcadroidOrange);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
         if (!validate()) {
+            if(progressDialog.isShowing())
+                progressDialog.dismiss();
             onLoginFailed();
             return;
         }
@@ -137,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                     boolean error = jObj.getBoolean("error");
 
                     // Check for error node in json
-                    if (!error) {
+                    if (error == false) {
                         // Now store the user in SQLite
                         JSONObject user = jObj.getJSONObject("user");
                         String email = user.getString("mail");
@@ -147,17 +144,24 @@ public class LoginActivity extends AppCompatActivity {
                         userInfo.setEmail(email);
                         userInfo.setCategory(category);
                         session.setLoggedin(true);
-
+                        if(progressDialog.isShowing())
+                            progressDialog.dismiss();
                         onLoginSuccess();
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");
+                        if(progressDialog.isShowing())
+                            progressDialog.dismiss();
                         toast(errorMsg);
+                        onLoginFailed();
                     }
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
+                    if(progressDialog.isShowing())
+                        progressDialog.dismiss();
                     toast("Json error: " + e.getMessage());
+                    onLoginFailed();
                 }
 
             }
@@ -165,22 +169,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                String body;
-                //get status code here
-                //String statusCode = String.valueOf(error.networkResponse.statusCode);
-                //get response body and parse with appropriate encoding
-                NetworkResponse networkResponse = error.networkResponse;
-                if(networkResponse != null){
-                if(error.networkResponse.data!=null) {
-                    try {
-                        body = new String(error.networkResponse.data,"UTF-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                }}
-                else{Log.e(TAG, "Login Error: " + error.getMessage());
+                Log.e(TAG, "Login Error: " + error.getMessage());
                 toast("Volley Error" + error.getMessage());
-                progressDialog.hide();}
+                if(progressDialog.isShowing())
+                    progressDialog.dismiss();
+                onLoginFailed();
             }
         }) {
 
@@ -198,6 +191,16 @@ public class LoginActivity extends AppCompatActivity {
 
         // Adding request to request queue
         LoginController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // On complete call either onLoginSuccess or onLoginFailed
+                        onLoginSuccess();
+                        // onLoginFailed();
+                        //if (progressDialog.isShowing()) progressDialog.dismiss();
+                    }
+                }, 3000);
     }
 
     private void toast(String x){
@@ -210,10 +213,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                this.finish();
+                session.setLoggedin(true);
+                onLoginSuccess();
             }
         }
     }
@@ -258,5 +259,7 @@ public class LoginActivity extends AppCompatActivity {
 
         return valid;
     }
+
+
 }
 
