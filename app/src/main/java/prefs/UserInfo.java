@@ -15,6 +15,8 @@ public class UserInfo {
     private static final String KEY_DEPT = "department";
     private static final String KEY_NAME = "name";
     private static final String KEY_LOG = "log";
+    private static final String KEY_ID = "id";
+    private static final String KEY_POST = "position";
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     Context ctx;
@@ -27,6 +29,11 @@ public class UserInfo {
 
     public void setName(String name){
         editor.putString(KEY_NAME, name);
+        editor.apply();
+    }
+
+    public void setId(String id){
+        editor.putString(KEY_ID, id);
         editor.apply();
     }
 
@@ -51,9 +58,15 @@ public class UserInfo {
     }
 
     public void setLog(String log){
-        editor.putString(KEY_CATEGORY, log);
+        editor.putString(KEY_LOG, log);
         editor.apply();
     }
+
+    public void setPost(String post){
+        editor.putString(KEY_POST, post);
+        editor.apply();
+    }
+
     public void clearUserInfo(){
         editor.clear();
         editor.commit();
@@ -61,6 +74,8 @@ public class UserInfo {
 
 
     public String getKeyEmail(){return prefs.getString(KEY_EMAIL, "");}
+
+    public String getKeyId(){return prefs.getString(KEY_ID, "");}
 
     public String getKeyCategory(){return  prefs.getString(KEY_CATEGORY, "");}
 
@@ -71,5 +86,7 @@ public class UserInfo {
     public String getKeyDept(){return  prefs.getString(KEY_DEPT, "");}
 
     public String getKeyLog(){return  prefs.getString(KEY_LOG, "");}
+
+    public String getKeyPost(){return  prefs.getString(KEY_POST, "");}
 
 }

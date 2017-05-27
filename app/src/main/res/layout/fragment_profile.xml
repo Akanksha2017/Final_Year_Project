@@ -1,38 +1,93 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="15dp"
-    android:orientation="vertical"
     tools:context="com.example.android.final_year_project.ProfileFragment">
 
     <TextView
         style="@style/ProfileTheme"
-        android:text="Name: " />
+        android:text="Name: "
+        android:id = "@+id/label_name"
+        android:layout_width="wrap_content"/>
+    <TextView
+        style="@style/ProfileTheme"
+        android:id="@+id/profile_name"
+        android:layout_toRightOf="@id/label_name"
+        android:layout_width="wrap_content"/>
 
     <TextView
         style="@style/ProfileTheme"
-        android:text="User ID: " />
+        android:text="User ID: "
+        android:id = "@+id/label_id"
+        android:layout_below="@id/label_name"
+        android:layout_width="wrap_content"/>
+    <TextView
+        style="@style/ProfileTheme"
+        android:id="@+id/profile_id"
+        android:layout_toRightOf="@id/label_id"
+        android:layout_below="@id/label_name"
+        android:layout_width="wrap_content"/>
+    <TextView
+        style="@style/ProfileTheme"
+        android:text="Year: "
+        android:id="@+id/label_year"
+        android:layout_below="@id/label_id"
+        android:layout_width="wrap_content"/>
+    <TextView
+        style="@style/ProfileTheme"
+        android:id="@+id/profile_year"
+        android:layout_toRightOf="@id/label_year"
+        android:layout_below="@id/label_id"
+        android:layout_width="wrap_content"/>
+
 
     <TextView
         style="@style/ProfileTheme"
-        android:text="Year: " />
+        android:text="Department: "
+        android:id="@+id/label_dept"
+        android:layout_below="@id/label_year"
+        android:layout_width="wrap_content"/>
+    <TextView
+        style="@style/ProfileTheme"
+        android:id="@+id/profile_dept"
+        android:layout_toRightOf="@+id/label_dept"
+        android:layout_below="@id/label_year"
+        android:layout_width="wrap_content"/>
 
     <TextView
         style="@style/ProfileTheme"
-        android:text="Department: " />
+        android:text="Email ID: "
+        android:id="@+id/label_mail"
+        android:layout_below="@id/label_dept"
+        android:layout_width="wrap_content"/>
+    <TextView
+        style="@style/ProfileTheme"
+        android:id="@+id/profile_mail"
+        android:layout_toRightOf="@id/label_mail"
+        android:layout_below="@id/label_dept"
+        android:layout_width="wrap_content"/>
 
     <TextView
         style="@style/ProfileTheme"
-        android:text="Email ID: " />
-
+        android:text="Position: "
+        android:id="@+id/label_pos"
+        android:layout_below="@id/label_mail"
+        android:layout_width="wrap_content"/>
     <TextView
         style="@style/ProfileTheme"
-        android:text="Position: " />
+        android:id="@+id/profile_pos"
+        android:layout_toRightOf="@id/label_pos"
+        android:layout_below="@id/label_mail"
+        android:layout_width="wrap_content"/>
 
     <LinearLayout
+        android:id="@+id/profile_btn_row"
+        android:layout_below="@id/label_pos"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
         <Button
             android:layout_width="wrap_content"
@@ -53,4 +108,4 @@
             android:text=" My Achievements "
             android:textStyle="bold" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
