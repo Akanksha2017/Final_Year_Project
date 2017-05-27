@@ -127,11 +127,13 @@ public class SignUpActivity extends AppCompatActivity {
 
                     // Check for error node in json
                     if (!error) {
+                        // Now store the user in SQLite
+                        JSONObject user = jObj.getJSONObject("user");
+
                         if (progressDialog!=null && progressDialog.isShowing()) progressDialog.dismiss();
                         toast(jObj.getString("message"));
                         session.setLoggedin(true);
-                        onSignupSuccess();
-                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        onSignupSuccess(user);
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");
@@ -183,7 +185,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
                         if (progressDialog!=null && progressDialog.isShowing()) progressDialog.dismiss();
-                        onSignupSuccess();
+                        //onSignupSuccess(user);
                         // onLoginFailed();
 
                     }
@@ -197,10 +199,19 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-    public void onSignupSuccess() {
+    public void onSignupSuccess(JSONObject user) {
         _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
-        this.finish();
+        Intent returnIntent = getIntent();
+        try {
+            returnIntent.putExtra("mail", user.getString("category"));
+            returnIntent.putExtra("category", user.getString("category"));
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        setResult(RESULT_OK,returnIntent);
+        finish();
     }
 
     public void onSignupFailed() {

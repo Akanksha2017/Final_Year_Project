@@ -72,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
         t.setTypeface(myCustomFont);
 
         if(session.isUserLoggedin()){
-            //     startActivity(new Intent(this, homescreen.class));
-            //    finish();
+            startActivity(new Intent(this, homescreen.class));
+            finish();
         }
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
@@ -162,8 +162,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
-                toast("Volley Error" + error.getMessage());
+                Log.e(TAG, "Login Error: " + error.toString());
+                toast("Volley Error" + error.toString());
                 if(progressDialog.isShowing())
                     progressDialog.dismiss();
                 onLoginFailed();
@@ -204,8 +204,15 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
+                String mail=data.getStringExtra("mail");
+                String category = data.getStringExtra("category");
+                if(mail != null && category !=null){
+                    userInfo.setEmail(mail);
+                    userInfo.setCategory(category);
+                }
                 session.setLoggedin(true);
                 onLoginSuccess();
             }
@@ -220,14 +227,16 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        if (validate()) {
+
+            Log.d("Login Success", "Yay!!!");
             Toast.makeText(this, "Login successful!", Toast.LENGTH_LONG);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 System.out.println(e);
             }
-            startActivity(new Intent(LoginActivity.this, homescreen.class));
+        if(session.isUserLoggedin()){
+            startActivity(new Intent(this, homescreen.class));
             finish();
         }
 
