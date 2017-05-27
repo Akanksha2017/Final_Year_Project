@@ -14,6 +14,7 @@ public class UserInfo {
     private static final String KEY_YEAR = "year";
     private static final String KEY_DEPT = "department";
     private static final String KEY_NAME = "name";
+    private static final String KEY_LOG = "log";
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     Context ctx;
@@ -49,6 +50,10 @@ public class UserInfo {
         editor.apply();
     }
 
+    public void setLog(String log){
+        editor.putString(KEY_CATEGORY, log);
+        editor.apply();
+    }
     public void clearUserInfo(){
         editor.clear();
         editor.commit();
@@ -64,4 +69,7 @@ public class UserInfo {
     public String getKeyYear(){return  prefs.getString(KEY_YEAR, "");}
 
     public String getKeyDept(){return  prefs.getString(KEY_DEPT, "");}
+
+    public String getKeyLog(){return  prefs.getString(KEY_LOG, "");}
+
 }

@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                 onLoginFailed();
             }
-        }) {
+        }){
 
             @Override
             protected Map<String, String> getParams() {
