@@ -102,8 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         _signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this,
-                R.style.EcadroidOrange);
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
         String tag_string_req = "req_signup";
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
