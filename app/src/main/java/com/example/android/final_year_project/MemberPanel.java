@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-
 public class MemberPanel extends AppCompatActivity {
     public static final String CATEGORY = "finalproject.abp.ecadroid.CATEGORY";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_panel);
     }
@@ -19,21 +19,27 @@ public class MemberPanel extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class); //Intent takes two parameters (context, Class)
         String category = "council";
         intent.putExtra(CATEGORY, category);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
 
     public void presidentLogin(View view){
         Intent intent = new Intent(this, LoginActivity.class); //Intent takes two parameters (context, Class)
         String category = "president";
         intent.putExtra(CATEGORY, category);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
 
     public void memberLogin(View view){
         Intent intent = new Intent(this, LoginActivity.class); //Intent takes two parameters (context, Class)
         String category = "member";
         intent.putExtra(CATEGORY, category);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        finish();
     }
 
     public void noLogin(View view){
