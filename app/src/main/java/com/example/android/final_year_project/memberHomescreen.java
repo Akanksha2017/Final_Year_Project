@@ -61,7 +61,7 @@ public class memberHomescreen extends AppCompatActivity {
 
                 if (item.getItemId()==R.id.nav_task)
                 {
-                    fragment = new TaskPoolFragment();
+                    fragment = new SocietyTaskPoolFragment();
                     title = R.string.task;
 
                 }
@@ -131,6 +131,5 @@ public class memberHomescreen extends AppCompatActivity {
             this.doubleBackToExitPressedOnce = true;
             Toast.makeText(this, "Press again to exit the application", Toast.LENGTH_SHORT).show();
         }
-
     }
 }

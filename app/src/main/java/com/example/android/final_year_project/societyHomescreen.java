@@ -61,7 +61,7 @@ public class societyHomescreen extends AppCompatActivity {
 
                 if (item.getItemId()==R.id.nav_task)
                 {
-                    fragment = new TaskPoolFragment();
+                    fragment = new SocietyTaskPoolFragment();
                     title = R.string.task;
 
                 }
