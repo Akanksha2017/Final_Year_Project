@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,14 +23,9 @@ import adapters.ExpenseListAdapter;
 import prefs.BudgetInfo;
 import prefs.Expense;
 
-import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
-import static java.lang.Integer.parseInt;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class BudgetFragment extends Fragment {
     FragmentManager FM;
     FragmentTransaction FT;
