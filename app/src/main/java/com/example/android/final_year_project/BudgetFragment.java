@@ -7,12 +7,26 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
+
+import java.util.List;
+
+import adapters.ExpenseListAdapter;
+import prefs.BudgetInfo;
+import prefs.Expense;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
 
 /**
@@ -21,7 +35,11 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 public class BudgetFragment extends Fragment {
     FragmentManager FM;
     FragmentTransaction FT;
-
+    private BudgetInfo budgetInfo;
+    private List<Expense> savedExpenses;
+    ExpenseListAdapter expenseListAdapter;
+    Context context;
+    ListView expenseListView;
 
     public BudgetFragment() {
         // Required empty public constructor
@@ -35,17 +53,37 @@ public class BudgetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        context = getActivity();
+        budgetInfo = new BudgetInfo(context);
+        View view = inflater.inflate(R.layout.fragment_budget, container,
+                false);
+        findViewsById(view);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_budget, container, false);
+        return view;
 
     }
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState){
-        Context context = getActivity();
+
         ((AppCompatActivity) context).getSupportActionBar().setTitle(R.string.budget);
         MaterialBetterSpinner spinner = (MaterialBetterSpinner) getActivity().findViewById(R.id.android_material_design_spinner);
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+
         FM= ((AppCompatActivity) context).getSupportFragmentManager();
+
+        final TextView totalAmount = (TextView) getView().findViewById(R.id.budget_value);
+        String amount = getBudget();
+        totalAmount.setText(amount);
+        budgetInfo.setTotal(parseFloat(amount + "f"));
+        final TextView leftAmount = (TextView) getView().findViewById(R.id.budget_remaining_value);
+        leftAmount.setText(budgetInfo.getKeyLeft().toString());
+
+        if(savedExpenses!=null){
+            expenseListAdapter = new ExpenseListAdapter(context, savedExpenses);
+            expenseListView.setAdapter(expenseListAdapter);
+        }
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,5 +97,12 @@ public class BudgetFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private String getBudget(){
+        return "50000";
+    }
+    private void findViewsById(View view) {
+        expenseListView = (ListView) view.findViewById(R.id.list_expense);
     }
 }
