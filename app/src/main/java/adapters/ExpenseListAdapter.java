@@ -65,7 +65,7 @@ public class ExpenseListAdapter extends ArrayAdapter<Expense>{
                     .findViewById(R.id.txt_exp_date);
             holder.expenseDescTxt = (TextView) convertView
                     .findViewById(R.id.txt_exp_detail);
-            holder.expenseDateTxt = (TextView) convertView
+            holder.expensePriceTxt = (TextView) convertView
                     .findViewById(R.id.txt_exp_amount);
             convertView.setTag(holder);
         } else {

@@ -5,18 +5,23 @@ package prefs;
  */
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.lang.Float.parseFloat;
+
 public class BudgetInfo {
     private static final String TAG = UserSession.class.getSimpleName();
     private static final String PREF_NAME = "budget";
-    private static final String KEY_TOTAL = "0.0";
+    private static final String KEY_TOTAL = "0.0f";
     private static final String EXPENSE = "expense";
-    private static final String LEFT = KEY_TOTAL;
+    public static Float LEFT = parseFloat(KEY_TOTAL);
+    public static int COUNT = 0;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -30,18 +35,16 @@ public class BudgetInfo {
 
     public void setTotal(Float soc){
         editor.putFloat(KEY_TOTAL, soc);
-        editor.putFloat(LEFT,soc);
+        LEFT = soc;
+        //editor.putFloat(LEFT,soc);
         editor.apply();
     }
 
-    public void setLeft(Float amnt){
-        editor.putFloat(LEFT, amnt);
-        editor.apply();
-    }
     public void setExpense(List<Expense> saved){
         Gson gson = new Gson();
         String jsonSaved = gson.toJson(saved);
         editor.putString(EXPENSE, jsonSaved);
+        editor.apply();
     }
 
     public void addExpense(Expense expense) {
@@ -49,17 +52,14 @@ public class BudgetInfo {
         if (saved == null)
             saved = new ArrayList<Expense>();
         saved.add(expense);
-        Float left_amnt = getKeyLeft();
-        left_amnt -= expense.getPrice();
-        setLeft(left_amnt);
         setExpense(saved);
+        COUNT++;
     }
 
     public ArrayList<Expense> getExpense() {
         List<Expense> saved;
-
         if (prefs.contains(EXPENSE)) {
-            String jsonExpenses = prefs.getString(EXPENSE, null);
+            String jsonExpenses = prefs.getString(EXPENSE, "");
             Gson gson = new Gson();
             Expense[] savedItems = gson.fromJson(jsonExpenses,
                     Expense[].class);
@@ -78,7 +78,5 @@ public class BudgetInfo {
     }
 
     public Float getKeyTotal(){return  prefs.getFloat(KEY_TOTAL, 0f);}
-
-    public Float getKeyLeft(){return  prefs.getFloat(LEFT, 0f);}
 
 }
