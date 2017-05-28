@@ -1,15 +1,132 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.android.final_year_project.BudgetFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is the expenses screen"
-        android:textColor="#FFFFFF"
-        android:textSize="35sp"/>
 
-</FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/budget_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/accent_material_dark"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:gravity="right">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id= "@+id/budget_label"
+                android:text="@string/label_total_budget"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:padding="12dp"
+                android:layout_weight="60"
+                />
+            <TextView
+                android:id="@+id/budget_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_dark_material_dark"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_weight="20"
+                android:layout_gravity="center_vertical"
+                />
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/android_material_design_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:layout_gravity="center_vertical"
+                android:focusableInTouchMode="false"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/budget_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_budget_history"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:padding="10dp"
+            android:layout_below="@id/budget_header" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fetched_history"
+            android:layout_below="@id/budget_history"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/budget_remaining_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/accent_material_dark"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:gravity="right"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id= "@+id/budget_remaining_label"
+                android:text="@string/label_remaining"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:padding="12dp"
+                android:layout_weight="60"
+                />
+
+            <TextView
+                android:id="@+id/budget_remaining_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_dark_material_dark"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_weight="20"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#FFFFFF"
+                android:layout_weight="20"
+                android:layout_marginLeft="10sp"
+                android:layout_gravity="center_vertical"
+                />
+        </LinearLayout>
+        <include layout="@layout/fragment_budget_content" />
+
+    </RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_marginRight"
+        android:layout_marginEnd="@dimen/fab_marginRight"
+        android:layout_marginBottom="@dimen/fab_marginBottom"
+        android:src="@drawable/ic_add_white_24dp"
+        />
+
+
+</android.support.design.widget.CoordinatorLayout>
