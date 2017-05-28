@@ -8,4 +8,5 @@ public class Utils {
         public static final String BASE_IP          = "http://abp-ecadroid.000webhostapp.com/";
         public static final String LOGIN_URL        = BASE_IP + "login.php";
         public static final String REGISTER_URL     = BASE_IP + "register.php";
+        public static final String PROFILE_URL    = BASE_IP + "profile.php";
 }
