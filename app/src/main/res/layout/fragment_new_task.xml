@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="15dp"
+    android:orientation="vertical"
+    tools:context="com.example.android.final_year_project.NewTaskFragment">
+
+    <TextView
+        style="@style/ProfileTheme"
+        android:layout_width="match_parent"
+        android:background="@color/accent_theme_dark"
+        android:text="@string/taskname" />
+
+    <EditText
+        android:id="@+id/task_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords"
+        android:maxLines="2"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        style="@style/ProfileTheme"
+        android:layout_width="match_parent"
+        android:background="@color/accent_theme_dark"
+        android:text="@string/desc" />
+
+    <EditText
+        android:id="@+id/description_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences"
+        android:maxLines="6"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        style="@style/ProfileTheme"
+        android:layout_width="match_parent"
+        android:background="@color/accent_theme_dark"
+        android:text="@string/deadline" />
+
+    <EditText
+        android:id="@+id/task_deadline_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:maxLines="1"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        style="@style/ProfileTheme"
+        android:layout_width="match_parent"
+        android:background="@color/accent_theme_dark"
+        android:text="@string/assignTo" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        style="@style/ProfileTheme"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/primary_dark_material_dark"
+        android:entries="@array/assigntask"
+        android:prompt="@string/new_task_prompt" />
+
+
+</LinearLayout>

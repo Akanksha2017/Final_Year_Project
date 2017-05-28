@@ -18,6 +18,7 @@ public class AddExpenseFragment extends Fragment {
     public AddExpenseFragment() {
         // Required empty public constructor
     }
+
     public void onResume() {
         super.onResume();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.label_add_expense);

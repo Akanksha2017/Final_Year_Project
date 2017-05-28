@@ -53,6 +53,24 @@
     <string name="prompt_expenses">Budget allotted</string>
     <string name="action_create_soc">Create Society</string>
 
+    <!-- Stings related to new task fragment-->
+    <string name="taskname"> Task Name </string>
+    <string name="desc">Description </string>
+    <string name="assignTo">Assign to :  </string>
+    <string name="deadline">Deadline </string>
+    <string-array name="assigntask">
+        <item>Ahaarya</item>
+        <item>Mukhauta</item>
+        <item>Philyra</item>
+        <item>Glamfire</item>
+        <item>Elvira</item>
+        <item>Shuffleshots</item>
+        <item>Inklings</item>
+        <item>NSS</item>
+    </string-array>
+    <string name="label_add_task">Add New task</string>
+    <string name="new_task_prompt">Select a society </string>
+
     <!-- Strings related to Expenses -->
     <string name="label_total_budget">Our Total Budget</string>
     <string name="label_add_expense">Add Expense</string>

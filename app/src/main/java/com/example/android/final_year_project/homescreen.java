@@ -61,7 +61,7 @@ public class homescreen extends AppCompatActivity {
 
                 if (item.getItemId()==R.id.nav_task)
                 {
-                    fragment = new TaskPoolFragment();
+                    fragment = new PresidentTaskPoolFragment();
                     title = R.string.task;
 
                 }

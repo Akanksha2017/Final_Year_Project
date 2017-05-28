@@ -67,7 +67,7 @@ public class ProfileFragment extends Fragment {
         mail.setText(email);
         final String category = userInfo.getKeyCategory();
         String tag_string_req = "req_login";
-        if(userInfo.getKeyId()!=""){
+        if (userInfo.getKeyId() != "") {
             name.setText(userInfo.getKeyName());
             id.setText(userInfo.getKeyId());
             year.setText(userInfo.getKeyYear());
