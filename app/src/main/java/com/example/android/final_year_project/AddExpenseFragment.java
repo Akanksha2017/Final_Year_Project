@@ -29,7 +29,8 @@ public class AddExpenseFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.label_add_expense);
-        return inflater.inflate(R.layout.fragment_attendance, container, false);
+
+        return inflater.inflate(R.layout.fragment_add_expense, container, false);
     }
 
 }

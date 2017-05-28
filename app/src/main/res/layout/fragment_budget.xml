@@ -33,12 +33,12 @@
                 android:id="@+id/budget_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="20"
                 android:background="@color/primary_dark_material_dark"
                 android:padding="10dp"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:layout_weight="20"
+                android:text="50000"
+                android:layout_gravity="center_vertical"
+                />
 
             <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                 android:id="@+id/android_material_design_spinner"
@@ -66,8 +66,24 @@
             android:layout_below="@id/budget_history"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_marginTop="10dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            >
+            <ListView
+                android:id="@+id/list_expense"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/colorPrimaryDark"
+                android:dividerHeight="10dp"
+                android:footerDividersEnabled="false"
+                android:padding="10dp"
+                android:scrollbarStyle="outsideOverlay" >
+            </ListView>
+        </android.support.v4.widget.NestedScrollView>
+
+
+
+
 
 
         <LinearLayout
