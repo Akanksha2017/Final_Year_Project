@@ -1,13 +1,15 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="false"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
     tools:context="com.example.android.final_year_project.BudgetFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/tasklayout1"
             android:layout_width="match_parent"
@@ -72,23 +74,24 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_add_white"
-            android:contextClickable="true" />
-<Button
-    android:layout_width="125dp"
-    android:layout_height="wrap_content"
-    android:text="All"
-    android:id="@+id/all"
-    android:background="@color/accent_theme_dark"
-    android:layout_alignParentBottom="true"
-    />
+            android:contextClickable="true"
+            android:src="@drawable/ic_add_white" />
+
+        <Button
+            android:id="@+id/all"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/accent_theme_dark"
+            android:text="All" />
+
         <Button
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:text="Internal"
-            android:background="@color/accent_theme_dark"
-            android:layout_toRightOf="@id/all"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="35dp"
-            android:layout_alignParentBottom="true"/>
+            android:layout_toRightOf="@id/all"
+            android:background="@color/accent_theme_dark"
+            android:text="Internal" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

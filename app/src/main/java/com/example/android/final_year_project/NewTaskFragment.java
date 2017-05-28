@@ -35,8 +35,9 @@ public class NewTaskFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.task);
         return inflater.inflate(R.layout.fragment_new_task, container, false);
     }
-    public void newtask(){
-        Fragment fragment=new NewTaskFragment();
+
+    public void newtask() {
+        Fragment fragment = new NewTaskFragment();
     }
 
 }
