@@ -40,12 +40,13 @@
                 android:layout_gravity="center_vertical"
                 />
 
-            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            <Spinner
                 android:id="@+id/android_material_design_spinner"
-                android:layout_width="wrap_content"
+                android:layout_width="24dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="20"
+                android:entries="@array/assigntask"
                 android:focusableInTouchMode="false" />
         </LinearLayout>
 

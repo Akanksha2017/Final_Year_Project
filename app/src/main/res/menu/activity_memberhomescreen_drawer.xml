@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:title="@string/profile"
+            android:icon="@drawable/ic_person_white_24dp"/>
+
+        <item
+            android:id="@+id/nav_task"
+            android:title="@string/task"
+            android:icon="@drawable/ic_description_white_24dp"/>
+
+        <item
+            android:id="@+id/nav_calender"
+            android:title="@string/Calender"
+            android:icon="@drawable/ic_event_note_white_24dp"/>
+
+        <item
+            android:id="@+id/nav_meeting"
+            android:title="@string/Meet"
+            android:icon="@drawable/ic_group_white_24dp"/>
+
+        <item
+            android:id="@+id/nav_log"
+            android:title="@string/log"
+            android:icon="@drawable/ic_event_note_white_24dp"/>
+
+    </group>
+
+</menu>

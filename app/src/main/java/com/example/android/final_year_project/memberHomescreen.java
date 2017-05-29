@@ -25,10 +25,10 @@ public class memberHomescreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homescreen);
+        setContentView(R.layout.activity_memberhomescreen);
 
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout2);
         navigationView= (NavigationView) findViewById(R.id.shitstuff);
         final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         //final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
