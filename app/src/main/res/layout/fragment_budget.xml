@@ -59,31 +59,18 @@
             android:textColor="#FFFFFF"
             android:textSize="22sp" />
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/fetched_history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/budget_history"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_marginTop="10dp"
-            >
-            <ListView
-                android:id="@+id/list_expense"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:divider="@color/colorPrimaryDark"
-                android:dividerHeight="10dp"
-                android:footerDividersEnabled="false"
-                android:padding="10dp"
-                android:scrollbarStyle="outsideOverlay" >
-            </ListView>
-        </android.support.v4.widget.NestedScrollView>
-
-
-
-
+        <ListView
+            android:id="@+id/list_expense"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@color/accent_theme_lighter"
+            android:dividerHeight="10dp"
+            android:footerDividersEnabled="false"
+            android:padding="10dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:layout_marginTop="82dp"
+            android:layout_marginBottom="72dp">
+        </ListView>
 
 
         <LinearLayout

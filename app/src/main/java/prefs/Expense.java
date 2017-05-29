@@ -15,7 +15,7 @@ public class Expense {
         super();
     }
 
-    public Expense(int id, String name, String description, float price) {
+    public Expense(int id, String date, String description, float price) {
         super();
         this.id = id;
         this.date = date;

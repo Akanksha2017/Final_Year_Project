@@ -14,29 +14,20 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="54dp">
-        <RelativeLayout
+        <EditText
+            android:id="@+id/meeting_date"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/expense_label_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="19sp"
-                android:text="@string/label_date"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:textColor="#ffffff" />
-            <TextView
-                android:id="@+id/expense_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/accent_theme_light"
-                android:layout_toRightOf="@id/expense_label_date"
-                android:layout_toEndOf="@id/expense_label_date"/>
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:hint="@string/label_date"
+            android:inputType="date"
+            android:textColor="#FFFFFF" />
+        <Button
+            android:id="@+id/date_setter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/label_date" />
 
 
         <!-- Email Label -->
@@ -48,15 +39,27 @@
             android:textColorHint="#ffffff">
 
             <EditText
-                android:id="@+id/expense_details"
+                android:id="@+id/meeting_from"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/label_details"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:minLines="1"
-                android:gravity="top|left|start"
-                android:maxLines="5"
+                android:hint="@string/label_from"
+                android:inputType="time"
+                android:textColor="#FFFFFF" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:textColorHint="#ffffff">
+
+            <EditText
+                android:id="@+id/meeting_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_to"
+                android:inputType="time"
                 android:textColor="#FFFFFF" />
         </android.support.design.widget.TextInputLayout>
 
@@ -69,22 +72,22 @@
             android:textColorHint="#ffffff">
 
             <EditText
-                android:id="@+id/expense_amount"
+                android:id="@+id/meeting_objective"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/label_amount"
-                android:inputType="numberDecimal" />
+                android:hint="@string/label_objective"
+                android:inputType="textMultiLine" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_add_expense"
+            android:id="@+id/btn_add_meeting"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
             android:background="@color/accent_theme_light"
             android:padding="12dp"
-            android:text="@string/label_add_expense" />
+            android:text="@string/label_add_meet" />
 
     </LinearLayout>
 </ScrollView>
