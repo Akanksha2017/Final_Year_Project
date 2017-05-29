@@ -46,7 +46,7 @@ public class PresidentTaskPoolFragment extends Fragment {
     public void onViewCreated(View v, Bundle savedInstanceState) {
         Context context = getActivity();
         ((AppCompatActivity) context).getSupportActionBar().setTitle(R.string.task);
-        MaterialBetterSpinner spinner = (MaterialBetterSpinner) getActivity().findViewById(R.id.android_material_design_spinner);
+        //MaterialBetterSpinner spinner = (MaterialBetterSpinner) getActivity().findViewById(R.id.android_material_design_spinner);
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab1);
         FM = ((AppCompatActivity) context).getSupportFragmentManager();
         fab.setOnClickListener(new View.OnClickListener() {

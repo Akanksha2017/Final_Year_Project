@@ -125,7 +125,7 @@ public class BudgetFragment extends Fragment {
     public void generateView(){
         budgetInfo = new BudgetInfo(context);
         ((AppCompatActivity) context).getSupportActionBar().setTitle(R.string.budget);
-        MaterialBetterSpinner spinner = (MaterialBetterSpinner) getActivity().findViewById(R.id.android_material_design_spinner);
+        //MaterialBetterSpinner spinner = (MaterialBetterSpinner) getActivity().findViewById(R.id.android_material_design_spinner);
 
 
         FM= ((AppCompatActivity) context).getSupportFragmentManager();

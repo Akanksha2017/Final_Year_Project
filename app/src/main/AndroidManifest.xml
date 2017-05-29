@@ -45,7 +45,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".AddNewTask"></activity>
+        <activity
+            android:name=".societyHomescreen"
+            android:label="@string/title_activity_home_screen"
+            android:theme="@style/EcadroidOrange"/>
+        <activity
+            android:name=".memberHomescreen"
+            android:label="@string/title_activity_home_screen"
+            android:theme="@style/EcadroidOrange"/>
     </application>
 
 </manifest>

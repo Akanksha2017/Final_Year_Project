@@ -25,21 +25,21 @@ public class MemberPanel extends AppCompatActivity {
     }
 
     public void presidentLogin(View view){
-        Intent intent = new Intent(this, LoginActivity.class); //Intent takes two parameters (context, Class)
+        Intent intent = new Intent(this, societyHomescreen.class); //Intent takes two parameters (context, Class)
         String category = "president";
         intent.putExtra(CATEGORY, category);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     public void memberLogin(View view){
-        Intent intent = new Intent(this, LoginActivity.class); //Intent takes two parameters (context, Class)
+        Intent intent = new Intent(this, memberHomescreen.class); //Intent takes two parameters (context, Class)
         String category = "member";
         intent.putExtra(CATEGORY, category);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     public void noLogin(View view){
