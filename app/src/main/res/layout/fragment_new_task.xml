@@ -48,20 +48,25 @@
         android:maxLines="1"
         android:textColor="#FFFFFF" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     <TextView
         style="@style/ProfileTheme"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:background="@color/accent_theme_dark"
         android:text="@string/assignTo" />
 
     <Spinner
         android:id="@+id/spinner1"
         style="@style/ProfileTheme"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="35dp"
         android:background="@color/primary_dark_material_dark"
-        android:entries="@array/assigntask"
-        android:prompt="@string/new_task_prompt" />
+        android:entries="@array/assigntask" />
 
-
+</LinearLayout>
 </LinearLayout>
